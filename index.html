@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mocktelería de Especialidad — Café de Ley</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mocktelería de Especialidad — Café de Ley">
+<meta property="og:description" content="Café de especialidad aplicado a la moktelería. 2 días · 8 horas · teoría + laboratorio. Cupo limitado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink-deep:#060a08;
+    --ink:#0d1712;
+    --ink-raised:#16241c;
+    --ink-line: rgba(216,224,201,0.14);
+    --taupe:#414d3b;
+    --taupe-soft:#93a67a;
+    --sage:#8fae6c;
+    --sage-dim: rgba(143,174,108,0.35);
+    --sand:#d9e0c7;
+    --cream:#f2f4ea;
+    --cream-dim: rgba(242,244,234,0.62);
+    --shadow: 0 30px 80px -40px rgba(0,0,0,0.7);
+    --radius: 18px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--ink-deep);
+    color: var(--cream);
+    font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(216,224,201,0.10) 1px, transparent 1px);
+    background-size: 28px 28px;
+    overflow-x: hidden;
+  }
+
+  ::selection{ background: var(--sage-dim); color:var(--ink-deep); }
+
+  a{ color:inherit; }
+  img{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    text-wrap: balance;
+    margin:0;
+    color: var(--cream);
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:0.7rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color: var(--sage);
+  }
+
+  p{ margin:0; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    padding: 15px 28px;
+    border-radius: 999px;
+    text-decoration:none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    cursor:pointer;
+    border: 1px solid transparent;
+  }
+  .btn:focus-visible{ outline: 2px solid var(--sage); outline-offset:3px; }
+
+  .btn--brass{
+    background: linear-gradient(180deg, #a8c384, var(--sage));
+    color: var(--ink-deep);
+    box-shadow: 0 14px 30px -12px rgba(143,174,108,0.55);
+  }
+  .btn--brass:hover{ transform: translateY(-2px); box-shadow: 0 18px 36px -12px rgba(143,174,108,0.7); }
+
+  .btn--ghost{
+    background: rgba(6,10,8,0.35);
+    border-color: var(--ink-line);
+    color: var(--cream);
+    backdrop-filter: blur(6px);
+  }
+  .btn--ghost:hover{ border-color: var(--sage-dim); background: rgba(143,174,108,0.1); }
+
+  /* ---------- Placeholder media (still pending) ---------- */
+  .ph{
+    width:100%; height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background: repeating-linear-gradient(135deg, rgba(216,224,201,0.06) 0 12px, rgba(216,224,201,0.02) 12px 24px);
+    border: 1px dashed var(--ink-line);
+    color: var(--cream-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding: 12px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(6,10,8,0.72);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 10px clamp(20px, 5vw, 56px);
+    max-width:1080px;
+    margin:0 auto;
+  }
+  .wordmark{ display:flex; align-items:center; text-decoration:none; }
+  .wordmark img{ height:46px; width:auto; }
+  .nav .btn--ghost{ padding:10px 18px; font-size:0.82rem; border-color: var(--ink-line); background:transparent; backdrop-filter:none; }
+  .nav .btn--ghost:hover{ background: rgba(143,174,108,0.06); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height: 88svh;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .hero-media{
+    position:absolute; inset:0;
+    z-index:0;
+  }
+  .hero-media img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position: 50% 30%;
+  }
+  .hero-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(0deg, rgba(6,10,8,0.97) 0%, rgba(6,10,8,0.85) 32%, rgba(6,10,8,0.4) 62%, rgba(6,10,8,0.62) 100%),
+      linear-gradient(100deg, rgba(6,10,8,0.72) 0%, rgba(6,10,8,0.1) 55%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:1;
+    width:100%;
+    padding: clamp(120px,26vh,220px) 0 clamp(36px,5vw,56px);
+  }
+  .hero h1{
+    font-size: clamp(2.5rem, 7vw, 4.4rem);
+    line-height:0.98;
+    margin-top:14px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+  }
+  .hero .eyebrow{ text-shadow: 0 2px 10px rgba(0,0,0,0.7); }
+  .hero h1 em{ font-style:normal; color: var(--sage); }
+  .hero-sub{
+    margin-top:18px;
+    max-width: 46ch;
+    color: rgba(242,244,234,0.92);
+    font-size:1.05rem;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.65);
+  }
+  .hero-cta-row{
+    margin-top: 28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    align-items:center;
+  }
+  .hero-cta-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:0.8rem;
+    color: var(--sage);
+    letter-spacing:0.04em;
+    margin-top:16px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  /* spec strip */
+  .spec-strip{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr 1.3fr 0.8fr;
+    border-top:1px solid var(--ink-line);
+    border-bottom:1px solid var(--ink-line);
+  }
+  .spec{
+    padding: 16px clamp(10px,2vw,22px);
+    border-left:1px solid var(--ink-line);
+  }
+  .spec:first-child{ border-left:none; }
+  .spec-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color: var(--cream-dim);
+  }
+  .spec-value{
+    margin-top:6px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    color: var(--cream);
+  }
+  .spec-value--small{
+    font-family:'Manrope', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    line-height:1.35;
+  }
+  .spec-rows{
+    margin-top:6px;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+  }
+  .spec-rows p{
+    font-family:'Manrope', sans-serif;
+    font-weight:600;
+    font-size:0.86rem;
+    color: var(--cream);
+  }
+  .spec-rows b{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    color: var(--sage);
+    margin-right:8px;
+  }
+
+  /* ---------- Sections ---------- */
+  section{ padding: clamp(56px, 9vw, 100px) 0; }
+  section + section{ border-top:1px solid var(--ink-line); }
+
+  .section-head{ max-width:60ch; margin-bottom: clamp(32px,5vw,52px); }
+  .section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin-top:12px; }
+  .section-head p{ margin-top:14px; color:var(--cream-dim); font-size:1.05rem; }
+
+  .lede{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    line-height:1.5;
+    max-width: 42ch;
+    color: var(--sand);
+  }
+  .lede strong{ color:var(--sage); font-weight:600; }
+
+  /* curriculum */
+  .days{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .day-card{
+    background: var(--ink-raised);
+    border:1px solid var(--ink-line);
+    border-radius: var(--radius);
+    overflow:hidden;
+    box-shadow: var(--shadow);
+  }
+  .day-media{ aspect-ratio: 16/10; overflow:hidden; }
+  .day-media img{ width:100%; height:100%; object-fit:cover; }
+  .day-body{ padding: clamp(22px,3vw,30px); }
+  .day-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.18em;
+    color: var(--sage);
+  }
+  .day-card h3{
+    font-size:1.4rem;
+    margin-top:8px;
+  }
+  .day-list{
+    list-style:none;
+    margin: 18px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+  }
+  .day-list li{
+    position:relative;
+    padding-left:20px;
+    font-size:0.93rem;
+    color: var(--cream-dim);
+  }
+  .day-list li::before{
+    content:"";
+    position:absolute; left:0; top:0.55em;
+    width:7px; height:1px;
+    background: var(--sage);
+  }
+  .day-list li strong{ color:var(--cream); font-weight:600; }
+
+  /* concept panel (café como ingrediente) */
+  .cert-panel{
+    display:grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 0;
+    background: var(--ink-raised);
+    border:1px solid var(--ink-line);
+    border-radius: var(--radius);
+    overflow:hidden;
+  }
+  .cert-media{ position:relative; min-height:280px; }
+  .cert-media img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+  .cert-copy{ padding: clamp(28px,4vw,44px); }
+  .cert-copy h2{ font-size:1.7rem; }
+  .cert-copy p{ color:var(--cream-dim); margin-top:16px; }
+  .cert-copy strong{ color:var(--sand); }
+  .cert-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+  .cert-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    padding:7px 12px;
+    border-radius:999px;
+    border:1px solid var(--ink-line);
+    color: var(--cream-dim);
+  }
+
+  /* steps */
+  .steps-banner{
+    position:relative;
+    border-radius: var(--radius);
+    overflow:hidden;
+    margin-bottom: 28px;
+    aspect-ratio: 21/9;
+  }
+  .steps-banner img{ width:100%; height:100%; object-fit:cover; }
+  .steps-banner::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(0deg, rgba(6,10,8,0.85), rgba(6,10,8,0.05) 55%);
+  }
+  .steps-banner-caption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding: 18px 22px;
+    z-index:1;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.74rem;
+    letter-spacing:0.06em;
+    color: var(--sand);
+  }
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:20px;
+  }
+  .step{
+    padding: 24px 20px;
+    border-radius: var(--radius);
+    border:1px solid var(--ink-line);
+    background: var(--ink-raised);
+  }
+  .step-num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    color: var(--sage);
+  }
+  .step h3{ font-size:1.04rem; margin-top:10px; font-family:'Manrope',sans-serif; font-weight:700; }
+  .step p{ margin-top:8px; color:var(--cream-dim); font-size:0.92rem; }
+
+  /* pricing */
+  .price-panel{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(24px,4vw,48px);
+    background: var(--ink-raised);
+    border:1px solid var(--ink-line);
+    border-radius: var(--radius);
+    padding: clamp(28px,4vw,44px);
+  }
+  .price-main .eyebrow{ margin-bottom:8px; }
+  .price-figure{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size: clamp(2.3rem, 5vw, 3.4rem);
+    color: var(--cream);
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .price-figure small{ font-family:'IBM Plex Mono', monospace; font-size:0.9rem; color:var(--cream-dim); font-weight:500; }
+  .price-note{ margin-top:16px; color:var(--cream-dim); font-size:0.94rem; max-width:40ch; }
+  .price-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex; flex-direction:column; gap:14px;
+    border-left:1px solid var(--ink-line);
+    padding-left: clamp(20px,3vw,32px);
+  }
+  .price-list li{ font-size:0.94rem; color:var(--cream-dim); }
+  .price-list li strong{ display:block; color:var(--cream); font-family:'Fraunces',serif; font-size:1.12rem; font-weight:600; margin-bottom:2px; }
+
+  /* inversión: bloque verde sólido */
+  #inversion{
+    background: linear-gradient(160deg, #b9d199 0%, var(--sage) 100%);
+    border-top:1px solid var(--ink-line);
+    border-bottom:1px solid var(--ink-line);
+  }
+  #inversion .price-panel{
+    background: transparent;
+    border-color: rgba(6,10,8,0.16);
+    box-shadow:none;
+  }
+  #inversion .eyebrow{ color: var(--ink-deep); opacity:0.7; }
+  #inversion .price-figure{ color: var(--ink-deep); }
+  #inversion .price-figure small{ color: rgba(6,10,8,0.65); }
+  #inversion .price-note{ color: rgba(6,10,8,0.72); }
+  #inversion .price-list{ border-left-color: rgba(6,10,8,0.18); }
+  #inversion .price-list li{ color: rgba(6,10,8,0.72); }
+  #inversion .price-list li strong{ color: var(--ink-deep); }
+
+  /* location */
+  .loc-panel{
+    background: var(--ink-raised);
+    border:1px solid var(--ink-line);
+    border-radius: var(--radius);
+    padding: clamp(28px,4vw,44px);
+  }
+  .loc-city{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: var(--cream);
+    margin-top:10px;
+  }
+  .loc-copy{
+    margin-top: clamp(20px,3vw,28px);
+    padding-top: clamp(20px,3vw,28px);
+    border-top:1px solid var(--ink-line);
+  }
+  .loc-copy address{ font-style:normal; color:var(--cream-dim); font-size:1rem; line-height:1.7; }
+  .loc-copy address strong{ color:var(--cream); display:block; font-family:'Fraunces',serif; font-size:1.15rem; font-weight:600; margin-bottom:8px; }
+
+  /* final CTA */
+  .final{
+    background: linear-gradient(180deg, var(--ink), var(--ink-deep));
+    border-top:1px solid var(--ink-line);
+    text-align:center;
+  }
+  .final h2{ font-size: clamp(2.1rem, 5vw, 3.4rem); }
+  .final .lede{ margin: 18px auto 0; text-align:center; }
+  .final-actions{
+    margin-top: 32px;
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  footer{
+    padding: 36px clamp(20px,5vw,56px) 44px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+  footer img{ height:30px; width:auto; opacity:0.9; }
+  footer p{
+    color: var(--cream-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.04em;
+  }
+
+  @media (max-width: 860px){
+    .hero{ min-height:82svh; }
+    .hero-media img{ object-position: 46% 30%; }
+    .spec-strip{ grid-template-columns: 1fr; }
+    .spec{ border-left:none; border-top:1px solid var(--ink-line); }
+    .spec:first-child{ border-top:none; }
+    .days{ grid-template-columns:1fr; }
+    .cert-panel{ grid-template-columns:1fr; }
+    .cert-media{ min-height:220px; }
+    .steps{ grid-template-columns:1fr; }
+    .price-panel{ grid-template-columns:1fr; }
+    .price-list{ border-left:none; padding-left:0; border-top:1px solid var(--ink-line); padding-top:18px; }
+  }
+
+  @media (max-width: 480px){
+    .nav .btn--ghost span.full{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="wordmark" href="#top">
+      <img src="Logo.png" alt="Café de Ley · Lab & Estudio de Café">
+    </a>
+    <a class="btn btn--ghost" href="#inversion"><span class="full">Ver </span>inversión</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-media">
+      <img src="Fotos%20para%20pagina/bartender-preparing-refreshing-cocktail.jpg" alt="Barista preparando un coffee mocktail">
+    </div>
+    <div class="hero-content">
+      <div class="wrap">
+        <p class="eyebrow">Café de Ley · Cupo limitado</p>
+        <h1>Mocktelería<br><em>de especialidad</em></h1>
+        <p class="hero-sub">Café de especialidad aplicado a la moktelería. Dos días de teoría y laboratorio para aprender a diseñar bebidas frías de autor, mirando el café como un ingrediente gastronómico.</p>
+        <div class="hero-cta-row">
+          <a class="btn btn--brass" href="#reservar">Quiero mi lugar</a>
+          <a class="btn btn--ghost" href="#temario">Ver temario</a>
+        </div>
+        <p class="hero-cta-note">Cupo 10–12 participantes</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-left:0; padding-right:0;">
+    <div class="spec-strip">
+      <div class="spec">
+        <p class="spec-label">Fechas y horarios</p>
+        <div class="spec-rows">
+          <p><b>SÁB 12</b>Septiembre · 9:00am – 2:00pm</p>
+          <p><b>DOM 13</b>Septiembre · 9:00am – 2:00pm</p>
+        </div>
+      </div>
+      <div class="spec">
+        <p class="spec-label">Modalidad</p>
+        <p class="spec-value">Teoría + laboratorio práctico</p>
+      </div>
+      <div class="spec">
+        <p class="spec-label">Nivel</p>
+        <p class="spec-value spec-value--small">Básico–intermedio</p>
+      </div>
+      <div class="spec">
+        <p class="spec-label">Cupo</p>
+        <p class="spec-value">10–12 personas</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="temario">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Contenido del laboratorio</p>
+        <h2>Del café al mise en place, y del mise en place a la bebida</h2>
+      </div>
+      <div class="days">
+        <article class="day-card">
+          <div class="day-media"><img src="Fotos%20para%20pagina/whiskey-with-cinnamon-table.jpg" alt="Coffee mocktail con canela y granos de café"></div>
+          <div class="day-body">
+            <p class="day-index">Día 1 · Entender</p>
+            <h3>Del café al mise en place</h3>
+            <ul class="day-list">
+              <li>Bienvenida y <strong>actividad sensorial</strong> con café</li>
+              <li>Historia de la moktelería y concepto moderno de mocktail</li>
+              <li>El café como ingrediente: acidez, dulzor, amargor, cuerpo y aroma</li>
+              <li>Herramientas de bar: shaker, jigger, bar spoon, mixing glass y más</li>
+              <li>Bases y extracción: espresso, filtrado y cold brew</li>
+              <li>Materia prima y balance: dulce, ácido, aromático, textura y sal</li>
+              <li><strong>Componentes</strong>: syrup, cordial, shrub y foam</li>
+              <li>Laboratorio de preparaciones por estaciones</li>
+              <li>Mise en place: etiquetado, enfriamiento y preparación para el Día 2</li>
+            </ul>
+          </div>
+        </article>
+        <article class="day-card">
+          <div class="day-media"><img src="Fotos%20para%20pagina/exec-618533d7-4208-46b3-86ce-455391c95458.png" alt="Preparación de bebida en barra con técnica"></div>
+          <div class="day-body">
+            <p class="day-index">Día 2 · Aplicar</p>
+            <h3>Del mise en place a la bebida</h3>
+            <ul class="day-list">
+              <li>Reencuentro y cata de las preparaciones del Día 1</li>
+              <li>Técnicas de bar: <strong>build, stir y shake</strong></li>
+              <li>Hielo y dilución: temperatura y textura</li>
+              <li>4 bebidas guiadas: Syrup, Cordial, Shrub y Foam</li>
+              <li><strong>Bebida de autor</strong> en equipos de 2–3 personas</li>
+              <li>Presentación final: nombre, concepto, café, técnica y justificación</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="concepto">
+    <div class="wrap">
+      <div class="cert-panel">
+        <div class="cert-media">
+          <img src="Fotos%20para%20pagina/front-view-brown-choco-dessert-tasty-delicious-sweet-with-powdered-coffee-choco-bar-strawberry-dark-background-sweet-freshing-dessert.jpg" alt="Coffee mocktail con fresa">
+        </div>
+        <div class="cert-copy">
+          <h2>El café como ingrediente gastronómico</h2>
+          <p>Un coffee mocktail no es simplemente un café mezclado con otros ingredientes. Es una bebida diseñada desde la <strong>intención sensorial</strong>: café, dulzor, acidez, aroma, textura, temperatura y dilución trabajando en equilibrio.</p>
+          <p>No se trata de memorizar recetas, sino de comprender qué aporta cada componente y cómo elegir la técnica adecuada para construir una bebida.</p>
+          <div class="cert-tags">
+            <span class="cert-tag">Observar · Construir · Ejecutar · Ajustar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="laboratorio">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">El laboratorio</p>
+        <h2>5 bebidas, una sola intención</h2>
+      </div>
+      <p class="lede">En este laboratorio vas a preparar <strong>5 bebidas frías a base de café</strong>: cuatro ejercicios guiados que exploran distintas técnicas y componentes, y una quinta que es completamente tuya — una <strong>receta original</strong>, diseñada y presentada por ti.</p>
+    </div>
+  </section>
+
+  <section id="inversion">
+    <div class="wrap">
+      <div class="price-panel">
+        <div class="price-main">
+          <p class="eyebrow">Inversión</p>
+          <div class="price-figure" style="margin-top:14px;">$4,000<small>MXN</small></div>
+          <p class="price-note">Reserva tu lugar con $1,000 MXN. Cupo limitado a 10–12 participantes para una experiencia práctica con seguimiento cercano.</p>
+        </div>
+        <ul class="price-list">
+          <li><strong>2 días · 8 horas</strong>de teoría y laboratorio</li>
+          <li><strong>Material incluido</strong>para las 5 preparaciones</li>
+          <li><strong>Bebida de autor</strong>diseñada por ti</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscripcion">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Inscripción y acceso</p>
+        <h2>Lo que pasa en cuanto reservas</h2>
+      </div>
+      <div class="steps-banner">
+        <img src="Fotos%20para%20pagina/exec-afbbcc3e-8164-4a02-97d4-ae0337138d60.png" alt="Herramientas de bar sobre la barra">
+        <p class="steps-banner-caption">Enfoque práctico y personalizado · máximo 12 participantes</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <p class="step-num">01</p>
+          <h3>Confirmas tu reserva</h3>
+          <p>Envíanos el comprobante de tu depósito junto con tu nombre completo, y aseguramos tu lugar en el sistema.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">02</p>
+          <h3>Entras al grupo</h3>
+          <p>Un día antes del curso te agregamos a un grupo de WhatsApp exclusivo, donde compartimos toda la información y los entregables.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">03</p>
+          <h3>Vives el curso</h3>
+          <p>Dos días de enseñanza personalizada y enfoque práctico, para que aprendas a preparar bebidas frías de café deliciosas, distintas y únicas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ubicacion">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ubicación</p>
+      </div>
+      <div class="loc-panel">
+        <p class="loc-city">[ Ciudad por confirmar ]</p>
+        <div class="loc-copy">
+          <address>
+            <strong>[ Sede por confirmar ]</strong>
+            [ Dirección por confirmar ]
+          </address>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="reservar">
+    <div class="wrap">
+      <p class="eyebrow">Te esperamos</p>
+      <h2>Diseña tu bebida alrededor de una intención sensorial</h2>
+      <p class="lede">La receta te dice qué hacer. <strong>El criterio te permite crear.</strong></p>
+
+      <div class="final-actions">
+        <a class="btn btn--brass" href="https://wa.me/529841070040?text=Quiero%20reservar%20mi%20lugar%20en%20Mocktelería%20de%20Especialidad" target="_blank" rel="noopener">Quiero apartar mi lugar</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="wordmark" href="#top">
+    <img src="Logo.png" alt="Café de Ley · Lab & Estudio de Café">
+  </a>
+  <p>LAB &amp; ESTUDIO DE CAFÉ</p>
+</footer>
+
+</body>
+</html>
